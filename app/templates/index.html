@@ -1,21 +1,17 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        {% if title %}
-        <title> {{ title }}</title>
-        {% else %}
-        <title> Welcome to the best Movie Review website </title>
-        {% endif %}
-        {% import 'macros.html' as macro%}
-    </head>
-    <body>
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+
+{% block content %}
+   
                <!-- Popular movie -->
         <!-- Popular movie -->
+    
         <h3> Popular Movies</h3>
-        <ul>
+        <ul class='d-flex'>
             {{ macro.displayMovieList(popular)}}
         </ul>
+
         <!-- Upcoming movie  -->
         <h3> Upcoming Movies </h3>
         <ul>
@@ -26,6 +22,5 @@
         <ul>
             {{ macro.displayMovieList(now_showing)}}
         </ul>
-       
-    </body>
-</html>
+        
+{% endblock %}
