@@ -7,13 +7,20 @@
     <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
         <img src="{{ movie.poster }}" alt="{{ movie.title }} poster" class="img-responsive">
         <li class="text-center">
-            <a href="/movie/{{movie.id}}">
-                {{ movie.title|truncate(10)}}</a>
+            <a href="/movie/{{movie.id}}" style="font-size: 1.8em;">
+                {{ movie.title|truncate()}}</a>
         </li>
     </div>
 
-{% endfor %}
+{% endfor %} 
+{% endmacro %}
 
-
- 
+<!-- Displaying reviews macro -->
+{% macro displayReviews(review_list) %}
+    {% for review in review_list %}
+    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 review-card">
+        <h2> {{ review.title}} </h2>
+        <p> {{ review.review | truncate(30) }}</p>
+    </div>
+    {% endfor %}
 {% endmacro %}

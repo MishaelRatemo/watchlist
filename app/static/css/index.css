@@ -1,0 +1,9 @@
+.d-flex{
+    display: flex;
+    flex-wrap: wrap;
+    color:#fff
+}
+body{
+    background-color: #212121 ;
+    color: #fff
+}
