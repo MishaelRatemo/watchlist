@@ -7,6 +7,7 @@ from .. import db
 from flask import flash,request # flash helps us display error messages to the user
 from flask_login import login_user
 from .forms import  LoginForm
+from flask_login import login_required,logout_user
 
 @auth.route('/login',methods=['GET','POST'])
 def login():
@@ -21,6 +22,13 @@ def login():
 
     title = "watchlist login"
     return render_template('auth/login.html',login_form = login_form,title=title)
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for("main.index"))
+
 
 
 @auth.route('/register',methods = ["GET","POST"])
