@@ -60,9 +60,11 @@ class User(UserMixin ,db.Model): # db.model arg help us to connect to DB and com
     email = db.Column(db.String(255),unique = True,index = True)
     # creating connection btn Role and User models by use of Foreign Key
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    bio = db.Column(db.String(255))
+    profile_pic_path = db.Column(db.String())
     # colum to hold passwords
-    # pass_secure = db.Column(db.String(255))
-    password_hash = db.Column(db.String(255))
+    pass_secure = db.Column(db.String(255))
+    # password_hash = db.Column(db.String(255))
     
     @property # allows only write only
     def password(self):
