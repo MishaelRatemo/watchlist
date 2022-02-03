@@ -49,6 +49,21 @@ class User(db.Model): # db.model arg help us to connect to DB and communicate
     __tablename__='users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255))
+    # creating connection btn Role and User models by use of Foreign Key
+    role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     
     def __repr__(self):
         return f'User {self.username}'
+    
+
+class Role(db.Model):
+    __tablename__ = 'roles'
+
+    id = db.Column(db.Integer,primary_key = True)
+    name = db.Column(db.String(255))
+    # create a virtual column that will connect with the foreign key in User
+    users = db.relationship('User',backref = 'role',lazy="dynamic")
+
+
+    def __repr__(self):
+        return f'User {self.name}'
