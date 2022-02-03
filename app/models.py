@@ -51,6 +51,8 @@ class User(db.Model): # db.model arg help us to connect to DB and communicate
     username = db.Column(db.String(255))
     # creating connection btn Role and User models by use of Foreign Key
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
+    # colum to hold passwords
+    pass_secure = db.Column(db.String(255))
     
     def __repr__(self):
         return f'User {self.username}'
