@@ -1,7 +1,13 @@
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
+from flask_login import UserMixin ## helps  to implement the methods ( is_authenticated(), is_active()-, is_anonymous() and get_id())
+from . import login_manager
 
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 class Movie:
     '''
     Movie class to define Movie Objects
@@ -47,14 +53,16 @@ class Review:
 
 
 '''Class allowing us to create new users'''
-class User(db.Model): # db.model arg help us to connect to DB and communicate
+class User(UserMixin ,db.Model): # db.model arg help us to connect to DB and communicate
     __tablename__='users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255))
+    email = db.Column(db.String(255),unique = True,index = True)
     # creating connection btn Role and User models by use of Foreign Key
     role_id = db.Column(db.Integer,db.ForeignKey('roles.id'))
     # colum to hold passwords
-    pass_secure = db.Column(db.String(255))
+    # pass_secure = db.Column(db.String(255))
+    password_hash = db.Column(db.String(255))
     
     @property # allows only write only
     def password(self):
