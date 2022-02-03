@@ -4,7 +4,7 @@ from config import config_options
 from flask_sqlalchemy import SQLAlchemy
 
 bootstrap = Bootstrap()
-db= SQLAlchemy # initialize database and assign it to db
+db= SQLAlchemy() # initialize database and assign it to db
 
 def create_app(config_name):
 
