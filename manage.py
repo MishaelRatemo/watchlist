@@ -3,6 +3,7 @@ from flask_script import Manager,Server
 from app import db
 from app.models import User
 from app.models import Role
+from flask_migrate import Migrate, MigrateCommand
 
 
 # Creating app instance
@@ -10,6 +11,10 @@ app = create_app('development')
 
 manager = Manager(app)
 manager.add_command('server',Server)
+
+# initialize migrate class that has been imported
+migrate = Migrate(app,db)
+manager.add_command('db',MigrateCommand)
 
 
 @manager.shell
