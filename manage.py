@@ -3,6 +3,7 @@ from flask_script import Manager,Server
 from app import db
 from app.models import User
 from app.models import Role
+from app.models import Review
 from flask_migrate import Migrate, MigrateCommand
 
 
@@ -20,7 +21,7 @@ manager.add_command('db',MigrateCommand)
 @manager.shell
 def make_shell_context():
     return dict(app = app,db = db,User = User,
-                 Role=Role)
+                 Role=Role,Review=Review)
 
 # from app.main import app
 
