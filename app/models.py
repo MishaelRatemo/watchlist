@@ -63,6 +63,8 @@ class User(UserMixin ,db.Model): # db.model arg help us to connect to DB and com
     pass_secure = db.Column(db.String(255))
     # password_hash = db.Column(db.String(255))
     
+    reviews = db.relationship('Review',backref = 'user',lazy = "dynamic")
+    
     @property # allows only write only
     def password(self):
         raise AttributeError('You cannot read the password attribute') # raise blocks access to password
