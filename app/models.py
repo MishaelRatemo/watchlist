@@ -1,8 +1,9 @@
+from datetime import datetime
+from email.policy import default
 from . import db
 from werkzeug.security import generate_password_hash,check_password_hash
 from flask_login import UserMixin ## helps  to implement the methods ( is_authenticated(), is_active()-, is_anonymous() and get_id())
 from . import login_manager
-from datetime import datetime
 
 
 
@@ -24,19 +25,22 @@ class Movie:
 
 
 class Review(db.Model):
-    '''Class fro making a review for a movies'''
+    
     __tablename__ = 'reviews'
     id = db.Column(db.Integer,primary_key = True)
     movie_id = db.Column(db.Integer)
-    title = db.Column(db.String)
+    movie_title = db.Column(db.String)
     image_path = db.Column(db.String)
-    review = db.Column(db.String)
+    movie_review = db.Column(db.String)
+    posted = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
 
-    ''' save review to database'''
+
+
     def save_review(self):
         db.session.add(self)
         db.session.commit()
+
 
     @classmethod
     def get_reviews(cls,id):
