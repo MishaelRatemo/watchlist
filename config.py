@@ -53,7 +53,7 @@ class Config:
     SIMPLEMDE_USE_CDN = True
 
 class ProdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL") # works with db sqlalchemy 1.4 and below
+    #SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL") # works with db sqlalchemy 1.4 and below
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL").replace("://", "ql://", 1) # works with latest vesion of flask slqalchemy
     pass
 
